@@ -1,34 +1,57 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Intelbras Photovoltaic Components
 
-## Getting Started
+## Objetivo
 
-First, run the development server:
+Implementar uma aplicação com controle de autenticação de usuários no qual permita a listagem, criação, alteração e exclusão de componentes fotovoltaicos (CRUD). A listagem deverá permitir filtros através de nome e grupos de componentes. Criar também uma funcionalidade no qual poderá marcar diversos componentes e calcular a cubagem para transporte.
 
-```bash
-npm run dev
-# or
-yarn dev
+## Estrutura da Aplicação
+
+- Api (Backend)
+- Aplicativo (Frontend)
+- Banco de Dados
+
+## Especificações Técnicas
+
+### Estrutura de Componentes Solar
+
+1. Id: Código do componente
+2. GTIN
+3. Nome do componente
+4. Tipo de Segmento: Ongrid e Offgrid (Classificação interna de geradores fotovoltaicos)
+5. Grupo de Componentes: Perfil, Modulo, Inversor, Cabos, Conectores e Baterias
+6. Dimensões Logísticas: Altura, Largura e Profundidade
+7. Peso bruto e líquido
+
+### Endpoint para o Cálculo de Cubagem
+
+- Método: Post
+- URL: /projetos/cubagem
+- Body:
+```json
+[
+    {
+        “id”: <id do produto>,
+        “quantidade”: 10.0,
+    }
+]
+```
+- Response:
+```json
+{
+    “cubagem”: 10.0,
+    “pesoBruto”: 1.000,
+    “pesoLiquido”: 2.000
+}
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### Premissas
 
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
+- Todas as tabelas deverão ter o controle de data de criação, alteração e desativação (Este cadastro trabalha
+com soft delete);
+- A API deverá permitir acesso externo, mediante a autenticação.
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
+### Tecnologias Recomendadas
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+- Banco de dados: PostgreSql ou Mysql
+- Back-end: Nodejs
+- Front-end: React ou Vue
