@@ -1,5 +1,7 @@
 # Intelbras Photovoltaic Components
 
+![Project Diagram](https://firebasestorage.googleapis.com/v0/b/myself-dg.appspot.com/o/interview%2Fintelbras%2Fintelbras-project-diagram.png?alt=media&token=8e7c7dcf-66f3-49cd-9c37-f701701b93a1)
+
 ## Objetivo
 
 Implementar uma aplicação com controle de autenticação de usuários no qual permita a listagem, criação, alteração e exclusão de componentes fotovoltaicos (CRUD). A listagem deverá permitir filtros através de nome e grupos de componentes. Criar também uma funcionalidade no qual poderá marcar diversos componentes e calcular a cubagem para transporte.
