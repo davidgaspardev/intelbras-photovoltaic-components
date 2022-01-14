@@ -1,0 +1,51 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Component {
+  id             Int            @id @default(autoincrement())
+  createdAt      DateTime       @default(now()) @map("created_at")
+  updatedAt      DateTime       @updatedAt @map("updated_at")
+  name           String         @db.VarChar(255)
+  gti            BigInt         @unique
+  systemType     SystemType     @map("system_type")
+  componentGroup ComponentGroup @map("component_group")
+  height         Float          @db.Real
+  width          Float          @db.Real
+  depth          Float          @db.Real
+  weight         Float          @db.Real
+  netWeight      Float          @db.Real @map("net_weight")
+  createBy       User           @relation(fields: [createById], references: [id])
+  createById     Int            @map("create_by_id")
+  @@map("components")
+}
+
+enum SystemType {
+  ONGRID
+  OFFGRID
+}
+
+enum ComponentGroup {
+  PERFIL
+  MODULE
+  INVERSOR
+  CABOS
+  CONECTORES
+  BATERIAS
+}
+
+model User {
+  id         Int          @id @default(autoincrement())
+  username   String       @unique
+  password   String       @db.VarChar(255)
+  components Component[]
+  @@map("users")
+}
