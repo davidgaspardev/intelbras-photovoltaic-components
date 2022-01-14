@@ -15,7 +15,7 @@ Implementar uma aplicação com controle de autenticação de usuários no qual 
 ### Estrutura de Componentes Solar
 
 1. Id: Código do componente
-2. GTIN
+2. GTIN (Global Trade Item Number)
 3. Nome do componente
 4. Tipo de Segmento: Ongrid e Offgrid (Classificação interna de geradores fotovoltaicos)
 5. Grupo de Componentes: Perfil, Modulo, Inversor, Cabos, Conectores e Baterias
