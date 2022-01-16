@@ -1,5 +1,7 @@
 # Intelbras Photovoltaic Components
 
+Photovoltaic components are part of the resources present in Intelbras' arsenal, which are used for product development. This project is based on obtaining information from these resources and storing them in a database, where the authenticated user can add, remove, update and delete this information, all this interaction is done via a web browser.
+
 ![Project Diagram](https://firebasestorage.googleapis.com/v0/b/myself-dg.appspot.com/o/interview%2Fintelbras%2Fintelbras-project-diagram.png?alt=media&token=8e7c7dcf-66f3-49cd-9c37-f701701b93a1)
 
 ## Objetivo
