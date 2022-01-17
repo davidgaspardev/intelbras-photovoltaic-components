@@ -15,7 +15,7 @@ model Component {
   createdAt      DateTime       @default(now()) @map("created_at")
   updatedAt      DateTime       @updatedAt @map("updated_at")
   name           String         @db.VarChar(255)
-  gti            BigInt         @unique
+  gtin           BigInt         @unique
   systemType     SystemType     @map("system_type")
   componentGroup ComponentGroup @map("component_group")
   height         Float          @db.Real
