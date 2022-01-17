@@ -1,6 +1,6 @@
 import styled from "styled-components";
-import { typography, TypographyProps } from 'styled-system';
+import { typography, color, TypographyProps, ColorProps } from 'styled-system';
 
-type TextProps = TypographyProps;
+type TextProps = TypographyProps & ColorProps;
 
-export const Text = styled('p')<TextProps>(typography);
+export const Text = styled('p')<TextProps>(typography, color);
