@@ -28,7 +28,7 @@ const LoadingStyled = styled.div`
     right: 0;
     bottom: 0;
     left: 0;
-    background: #00000055;
+    background: var(--color-shadow);
 
     .lds-roller {
         display: inline-block;
