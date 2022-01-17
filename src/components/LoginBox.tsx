@@ -34,9 +34,9 @@ export default function LoginBox(props: Props) {
                 <Header />
 
                 { /** DATA INPUTS */}
-                <input required name="username" type="text" placeholder="username" />
-                <input required name="password" type="password" placeholder="password" />
-                <input type="submit" />
+                <input required name="username" type="text" placeholder="username"/>
+                <input required name="password" type="password" placeholder="password"/>
+                <input type="submit" value="entrar"/>
             </Box>
         </FormStyled>
     );
@@ -45,8 +45,8 @@ export default function LoginBox(props: Props) {
 function Header() {
     return (
         <header className="children-center">
-            <Image src="/static/images/svg/logo-intelbras.svg" width={200} height={61} />
-            <Text color={"#FFFFFF"}>Componentes <strong>Fotovoltaicos</strong></Text>
+            <Image src="/static/images/svg/logo-intelbras.svg" width={200} height={61}/>
+            <Text color="#646464">Componentes <strong>Fotovoltaicos</strong></Text>
         </header>
     );
 }
