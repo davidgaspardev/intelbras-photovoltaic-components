@@ -37,19 +37,19 @@ export default function ComponentPopup(props: Props) {
                     <Box width="50%">
                         <label htmlFor="systemType">Tipo de sistema</label>
                         <select required name="systemType">
+                            <option value="ONGRID">ongrid</option>
+                            <option value="OFFGRID">offgrid</option>
+                        </select>
+                    </Box>
+                    <Box width="50%">
+                        <label htmlFor="componentGroup">Grupo de componente</label>
+                        <select required name="componentGroup">
                             <option value="PERFIL">perfil</option>
                             <option value="MODULE">module</option>
                             <option value="INVERSOR">inversor</option>
                             <option value="CABOS">cabos</option>
                             <option value="CONECTORES">conectores</option>
                             <option value="BATERIAS">baterias</option>
-                        </select>
-                    </Box>
-                    <Box width="50%">
-                        <label htmlFor="componentGroup">Grupo de componente</label>
-                        <select required name="componentGroup">
-                            <option value="ONGRID">ongrid</option>
-                            <option value="OFFGRID">offgrid</option>
                         </select>
                     </Box>
                 </Flex>
