@@ -23,36 +23,44 @@ export default function SearchBar(props: Props) {
 
     return (
         <SearchBarStyled id="search-bar">
-            <Flex flexDirection="row">
-                <Box width="90%">
-                    <input className="search-input" name="name" required type="text" placeholder="Pesquisar"/>
-                </Box>
-                <Box width="10%">
+            <Flex
+                flexDirection="row"
+                justifyContent="center"
+                alignItems="center">
+
+                <input required
+                    className="search-input"
+                    name="name"
+                    type="text"
+                    placeholder="Pesquisar"/>
+
+                <Box width="100px">
                     <input type="submit" value=""/>
                 </Box>
             </Flex>
             <Flex flexDirection="row-reverse">
-                    <Box width={200}>
-                        <label htmlFor="systemType">Tipo de sistema</label>
-                        <select required name="systemType">
-                            <option value="QUALQUER">qualquer</option>
-                            <option value="ONGRID">ongrid</option>
-                            <option value="OFFGRID">offgrid</option>
-                        </select>
-                    </Box>
-                    <Box width={200}>
-                        <label htmlFor="componentGroup">Grupo de componente</label>
-                        <select required name="componentGroup">
-                            <option value="QUALQUER">qualquer</option>
-                            <option value="PERFIL">perfil</option>
-                            <option value="MODULE">module</option>
-                            <option value="INVERSOR">inversor</option>
-                            <option value="CABOS">cabos</option>
-                            <option value="CONECTORES">conectores</option>
-                            <option value="BATERIAS">baterias</option>
-                        </select>
-                    </Box>
+                <Box className="filter-block" width={150}>
+                    <label htmlFor="systemType">Tipo de sistema</label>
+                    <select required name="systemType">
+                        <option value="QUALQUER">qualquer</option>
+                        <option value="ONGRID">ongrid</option>
+                        <option value="OFFGRID">offgrid</option>
+                    </select>
+                </Box>
+                <Box className="filter-block" width={150}>
+                    <label htmlFor="componentGroup">Grupo de componente</label>
+                    <select required name="componentGroup">
+                        <option value="QUALQUER">qualquer</option>
+                        <option value="PERFIL">perfil</option>
+                        <option value="MODULE">module</option>
+                        <option value="INVERSOR">inversor</option>
+                        <option value="CABOS">cabos</option>
+                        <option value="CONECTORES">conectores</option>
+                        <option value="BATERIAS">baterias</option>
+                    </select>
+                </Box>
             </Flex>
+            <hr/>
         </SearchBarStyled>
     );
 }
@@ -86,22 +94,26 @@ const SearchBarStyled = styled('form')`
 
     .search-input {
         max-width: 100%;
-        font-size: 16pt;
-        margin-right: 0px;
+        font-size: 14pt;
+        margin: 8px 0px 8px 16px;
         padding: 10px 20px;
-        border-top-left-radius: 20px;
-        border-bottom-left-radius: 20px;
+        border-top-left-radius: 10px;
+        border-bottom-left-radius: 10px;
         border-top-right-radius: 0px;
         border-bottom-right-radius: 0px;
     }
 
+    input {
+        width: calc(100% - 16px);
+    }
+
     input[type=submit] {
-        margin-left: 0px;
-        height: 47px;
+        margin: 8px 8px 8px 0px;
+        height: 44px;
         border-top-left-radius: 0px;
         border-bottom-left-radius: 0px;
-        border-top-right-radius: 20px;
-        border-bottom-right-radius: 20px;
+        border-top-right-radius: 10px;
+        border-bottom-right-radius: 10px;
         cursor: pointer;
         background-color: var(--color-secondary);
         background-image: url('/static/images/svg/search.svg');
@@ -112,13 +124,28 @@ const SearchBarStyled = styled('form')`
 
     label {
         font-size: 8pt;
-        font-weight: 600;
-        color: #646464;
-        margin-left: 8px;
+        color: white;
+        margin-left: 4px;
+    }
+
+    div.filter-block {
+        background-color: #41BF79;
+        border-radius: 5px;
+        padding: 0 10px;
+        margin-right: 16px;
     }
 
     select {
         margin-top: 4px;
         margin-left: 0px;
+        color: white;
+        background: #46B176;
+        padding: 5px;
+        width: 100%;
+    }
+
+    hr {
+        border: 1.5px solid #F4F4F4;
+        margin: 20px;
     }
 `;
