@@ -21,8 +21,15 @@ export default class ComponentRepository extends Prisma implements Repository<Co
         return componentCreated;
     }
     
-    async getAll() {
-        const components = await super.getConnect().component.findMany();
+    async getAll(where?: { [key: string]: any; }) {
+        if (where && where.name) {
+            where.name = {
+                contains: where.name
+            };
+        }
+        const components = await super.getConnect().component.findMany({
+            where
+        });
 
         return components;
     }

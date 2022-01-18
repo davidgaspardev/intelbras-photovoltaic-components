@@ -21,8 +21,10 @@ export default class UserRepository extends Prisma implements Repository<User> {
         return userCreated;
     }
 
-    async getAll() {
-        const users = await super.getConnect().user.findMany();
+    async getAll(where?: { [key: string]: any; }) {
+        const users = await super.getConnect().user.findMany({
+            where
+        });
 
         return users;
     }
