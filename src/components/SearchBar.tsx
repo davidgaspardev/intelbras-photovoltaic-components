@@ -4,7 +4,7 @@ import { Box } from "./base/Box";
 import { Flex } from "./base/Flex";
 
 type SearchParameters = {
-    search: string;
+    name: string;
     systemType?: "ONGRID" | "OFFGRID";
     componentGroup?: "PERFIL" | "MODULE" | "INVERSOR" | "CABOS" | "CONECTORES" | "BATERIAS";
 };
@@ -30,7 +30,7 @@ export default function SearchBar(props: Props) {
         <SearchBarStyled id="search-bar">
             <Flex flexDirection="row">
                 <Box width="90%">
-                    <input className="search-input" name="search" required type="text" placeholder="Pesquisar"/>
+                    <input className="search-input" name="name" required type="text" placeholder="Pesquisar"/>
                 </Box>
                 <Box width="10%">
                     <input type="submit" value=""/>
@@ -67,7 +67,7 @@ function loadData(form: HTMLFormElement, callback: (search: SearchParameters) =>
         return (form.elements.namedItem(name) as HTMLInputElement).value;
     }
 
-    const search = getValue("search");
+    const name = getValue("name");
     const systemType = getValue("systemType") as "ONGRID" | "OFFGRID" | "QUALQUER";
     const componentGroup = getValue("componentGroup") as "PERFIL"
         | "MODULE"
@@ -78,7 +78,7 @@ function loadData(form: HTMLFormElement, callback: (search: SearchParameters) =>
         | "QUALQUER";
 
     callback({
-        search,
+        name,
         systemType: systemType === "QUALQUER" ? undefined : systemType,
         componentGroup: componentGroup === "QUALQUER" ? undefined : componentGroup
     });
