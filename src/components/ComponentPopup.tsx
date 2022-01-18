@@ -128,7 +128,7 @@ const ComponentPopupStyled = styled.div`
     bottom: 0;
     left: 0;
     background: var(--color-shadow);
-    z-index: 100;
+    z-index: 90;
 
     form {
         width: 450px;

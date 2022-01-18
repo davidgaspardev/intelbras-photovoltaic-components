@@ -31,6 +31,7 @@ const HeaderStyled = styled(Flex)`
     left: 0;
     background-color: white;
     box-shadow: 0px 0px 10px #00000010;
+    z-index: 80;
 
     > div {
         margin: 10px 0px 10px 20px;

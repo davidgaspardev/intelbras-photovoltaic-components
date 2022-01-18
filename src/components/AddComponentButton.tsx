@@ -31,4 +31,5 @@ const AddComponentButtonStyled = styled.div`
     border-radius: 10px;
     background-color: var(--color-secondary);
     cursor: pointer;
+    z-index: 50;
 `;

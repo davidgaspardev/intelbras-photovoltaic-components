@@ -84,6 +84,7 @@ const ComponentItemStyled = styled.div`
         width: 200px;
         border-radius: 5px;
         background-color: #4CA473;
+        z-index: 10;
     }
 
     div.component-categories {
