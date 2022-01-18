@@ -1,13 +1,8 @@
 import { useEffect } from "react";
 import styled from "styled-components";
+import { SearchParameters } from "../utils/types";
 import { Box } from "./base/Box";
 import { Flex } from "./base/Flex";
-
-type SearchParameters = {
-    name: string;
-    systemType?: "ONGRID" | "OFFGRID";
-    componentGroup?: "PERFIL" | "MODULE" | "INVERSOR" | "CABOS" | "CONECTORES" | "BATERIAS";
-};
 
 type Props = {
     onSubmit: (search: SearchParameters) => void;
