@@ -98,7 +98,7 @@ function loadComponentData(componentPopup: HTMLFormElement, callback: (component
     const width = Number.parseFloat(getValue("width"));
     const depth = Number.parseFloat(getValue("depth"));
     const weight = Number.parseFloat(getValue("weight"));
-    const netWeight = Number.parseFloat(getValue("name"));
+    const netWeight = Number.parseFloat(getValue("netWeight"));
 
     callback({
         name,
