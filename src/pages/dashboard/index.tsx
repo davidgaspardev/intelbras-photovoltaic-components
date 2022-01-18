@@ -79,8 +79,9 @@ export default function DashboardPage() {
                 <SearchBar onSubmit={onSearch}/>
 
                 <FlexWrap maxWidth={1200} width="100%">
-                    { componentsRef.current.length > 0 && componentsRef.current.map((component) => (
+                    { componentsRef.current.length > 0 && componentsRef.current.map((component, index) => (
                         <ComponentItem
+                            key={index}
                             data={component}
                             onClickDelete={onDeleteComponent}
                             onClickUpdate={openUpdateComponent}/>
