@@ -2,24 +2,32 @@ import styled from "styled-components";
 import { Flex } from "./base/Flex";
 import { Text } from "./base/Text";
 import { Box } from "./base/Box";
-import { Component, ComponentGroup, SystemType } from "@prisma/client";
 import { useEffect } from "react";
+import { ComponentData } from "../utils/types";
 
 type Props = {
-    componentData?: Component;
-    onClick: (component: Component) => void;
+    data?: ComponentData;
+    onClickAdd: (component: ComponentData) => void;
+    onClickUpdate: (component: ComponentData) => void;
     onClickBack: () => void;
 }
 
 export default function ComponentPopup(props: Props) {
-    const { onClick, onClickBack } = props;
+    const { data, onClickAdd, onClickUpdate, onClickBack } = props;
+
+    const hasData = data ? true : false;
 
     useEffect(() => {
         const componentPopup = document.getElementById("component-popup") as HTMLFormElement;
 
         componentPopup.onsubmit = (event) => {
             event.preventDefault();
-            loadComponentData(componentPopup, onClick);
+            loadComponentData(componentPopup, hasData ? (component) => {
+                onClickUpdate({
+                    ...component,
+                    id: data?.id,
+                });
+            } : onClickAdd);
         };
     }, []);
 
@@ -30,20 +38,20 @@ export default function ComponentPopup(props: Props) {
 
                 <hr/>
 
-                <input required name="name" type="text" placeholder="Nome"/>
-                <input required name="gtin" type="number" placeholder="GTIN"/>
+                <input required name="name" type="text" defaultValue={data?.name} placeholder="Nome"/>
+                <input required name="gtin" type="number" defaultValue={data?.gtin} placeholder="GTIN"/>
                 <hr/>
                 <Flex>
                     <Box width="50%">
                         <label htmlFor="systemType">Tipo de sistema</label>
-                        <select required name="systemType">
+                        <select required defaultValue={data?.systemType} name="systemType">
                             <option value="ONGRID">ongrid</option>
                             <option value="OFFGRID">offgrid</option>
                         </select>
                     </Box>
                     <Box width="50%">
                         <label htmlFor="componentGroup">Grupo de componente</label>
-                        <select required name="componentGroup">
+                        <select required defaultValue={data?.componentGroup} name="componentGroup">
                             <option value="PERFIL">perfil</option>
                             <option value="MODULE">module</option>
                             <option value="INVERSOR">inversor</option>
@@ -56,26 +64,26 @@ export default function ComponentPopup(props: Props) {
                 <Text>Volume</Text>
                 <Flex>
                     <Box width="33%">
-                        <input required name="height" type="number" step="any" placeholder="Altura"/>
+                        <input required defaultValue={data?.height} name="height" type="number" step="any" placeholder="Altura"/>
                     </Box>
                     <Box width="33%">
-                        <input required name="width" type="number" step="any" placeholder="Largura"/>
+                        <input required defaultValue={data?.width} name="width" type="number" step="any" placeholder="Largura"/>
                     </Box>
                     <Box width="33%">
-                        <input required name="depth" type="number" step="any" placeholder="Profundidade"/>
+                        <input required defaultValue={data?.depth} name="depth" type="number" step="any" placeholder="Profundidade"/>
                     </Box>
                 </Flex>
                 <Text>Peso</Text>
                 <Flex>
                     <Box width="50%">
-                        <input required name="weight" type="number" step="any" placeholder="Peso bruto"/>
+                        <input required defaultValue={data?.weight} name="weight" type="number" step="any" placeholder="Peso bruto"/>
                     </Box>
                     <Box width="50%">
-                        <input required name="netWeight" type="number" step="any" placeholder="Peso líquido"/>
+                        <input required defaultValue={data?.netWeight} name="netWeight" type="number" step="any" placeholder="Peso líquido"/>
                     </Box>
                 </Flex>
 
-                <input type="submit" value="adicionar"/>
+                <input type="submit" value={hasData ? "atualizar" : "adicionar"}/>
 
             </form>
 
@@ -85,13 +93,13 @@ export default function ComponentPopup(props: Props) {
     );
 }
 
-function loadComponentData(componentPopup: HTMLFormElement, callback: (component: Component) => void) {
+function loadComponentData(componentPopup: HTMLFormElement, callback: (component: ComponentData) => void) {
     function getValue(name: string) {
         return (componentPopup.elements.namedItem(name) as HTMLInputElement).value;
     }
 
     const name = getValue("name")
-    const gtin = BigInt(getValue("gtin"));
+    const gtin = getValue("gtin");
     const systemType = getValue("systemType");
     const componentGroup = getValue("componentGroup");
     const height = Number.parseFloat(getValue("height"));
@@ -103,14 +111,14 @@ function loadComponentData(componentPopup: HTMLFormElement, callback: (component
     callback({
         name,
         gtin,
-        systemType: systemType as SystemType,
-        componentGroup: componentGroup as ComponentGroup,
+        systemType,
+        componentGroup,
         height,
         width,
         depth,
         weight,
         netWeight
-    } as Component);
+    } as ComponentData);
 }
 
 const ComponentPopupStyled = styled.div`
