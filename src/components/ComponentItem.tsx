@@ -6,10 +6,12 @@ import { Box } from "./base/Box";
 
 type Props = {
     data: ComponentData;
+    onClickUpdate: (data: ComponentData) => void;
+    onClickDelete: (data: ComponentData) => void;
 }
 
 export default function ComponentItem(props: Props) {
-    const { data } = props;
+    const { data, onClickUpdate, onClickDelete } = props;
 
     return (
         <ComponentItemStyled>
@@ -55,6 +57,11 @@ export default function ComponentItem(props: Props) {
                 </Box>
             </Flex>
 
+            <Flex className="buttons" justifyContent="space-evenly" alignItems="center">
+                <Text onClick={() => onClickDelete(data)}>excluir</Text>
+                <Text onClick={() => onClickUpdate(data)} >atualizar</Text>
+            </Flex>
+
         </ComponentItemStyled>
     );
 }
@@ -62,11 +69,22 @@ export default function ComponentItem(props: Props) {
 const ComponentItemStyled = styled.div`
     max-width: 380px;
     width: 100%;
-    margin: 8px;
+    margin: 8px 8px 80px 8px;
     padding: 16px;
     background-color: #41BF79;
     color: white;
     border-radius: 5px;
+    position: relative;
+
+    div.buttons {
+        position: absolute;
+        right: 0;
+        bottom: -48px;
+        height: 38px;
+        width: 200px;
+        border-radius: 5px;
+        background-color: #4CA473;
+    }
 
     div.component-categories {
         background-color: #4CA473;
