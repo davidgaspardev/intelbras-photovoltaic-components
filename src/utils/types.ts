@@ -15,3 +15,9 @@ export type ComponentData = {
     weight: number;
     netWeight: number;
 }
+
+export type SearchParameters = {
+    name: string;
+    systemType?: "ONGRID" | "OFFGRID";
+    componentGroup?: "PERFIL" | "MODULE" | "INVERSOR" | "CABOS" | "CONECTORES" | "BATERIAS";
+};
