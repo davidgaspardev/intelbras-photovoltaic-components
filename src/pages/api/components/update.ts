@@ -1,5 +1,6 @@
 import { Component, ComponentGroup, SystemType } from "@prisma/client";
 import { NextApiRequest, NextApiResponse } from "next";
+import { isPostRequestValid, responseBadRequest, responseCreated, responseUnauthorized } from "../../../helpers/http";
 import Sessions from "../../../lib/sessions";
 import ComponentRepository from "../../../repository/component";
 import UserRepository from "../../../repository/user";
@@ -8,8 +9,8 @@ const userRepo = new UserRepository();
 const componentRepo = new ComponentRepository();
 
 export default async function updateComponent(req: NextApiRequest, res: NextApiResponse) {
-    if(!isRequestValid(req)) {
-        res.status(400).end();
+    if(!isPostRequestValid(req)) {
+        responseBadRequest(res, "Request is valid (structure)");
         return;
     }
 
@@ -17,7 +18,7 @@ export default async function updateComponent(req: NextApiRequest, res: NextApiR
     const sessions = Sessions.getInstance();
 
     if(!sessions.hasSession(token)) {
-        res.status(401).end();
+        responseUnauthorized(res, "Token not allowed");
         return;
     }
 
@@ -36,7 +37,7 @@ export default async function updateComponent(req: NextApiRequest, res: NextApiR
 
     await componentRepo.update(body.id, component);
 
-    res.status(201).end();
+    responseCreated(res);
 }
 
 function getSystemTypeByString(str: "ONGRID" | "OFFGRID") {
@@ -55,18 +56,4 @@ function getComponentGroupByString(str: "PERFIL" | "MODULE" | "INVERSOR" | "CABO
         case "CONECTORES": return ComponentGroup.CONECTORES;
         case "BATERIAS": return ComponentGroup.BATERIAS;
     }
-}
-
-function isRequestValid(req: NextApiRequest) {
-    const { method, headers } = req;
-
-    if(!method || method !== "POST") return false;
-    // if(headers['Content-Type'] !== 'application/json') return false;
-    if(!hasToken(req)) return false;
-
-    return true;
-}
-
-function hasToken(req: NextApiRequest) {
-    return typeof req.headers['token'] === "string" && req.headers['token'] ? true : false;
 }

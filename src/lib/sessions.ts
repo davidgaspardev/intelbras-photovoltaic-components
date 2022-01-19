@@ -36,8 +36,6 @@ export default class Sessions {
             username,
             expire: Date.now() + ONE_HOUR
         };
-
-        console.log("created:", this.sessions);
     }
 
     private findTokenByUsername(username: string) {

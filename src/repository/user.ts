@@ -1,5 +1,5 @@
 import { User } from "@prisma/client";
-import { Repository } from "../helpers/interfaces";
+import { Repository } from "../utils/interfaces";
 import Prisma from "../lib/prisma";
 
 /**
