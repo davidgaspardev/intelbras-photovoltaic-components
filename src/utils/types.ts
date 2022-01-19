@@ -21,3 +21,9 @@ export type SearchParameters = {
     systemType?: "ONGRID" | "OFFGRID";
     componentGroup?: "PERFIL" | "MODULE" | "INVERSOR" | "CABOS" | "CONECTORES" | "BATERIAS";
 };
+
+export type CubingData = {
+    cubagem: number;
+    pesoBruto: number;
+    pesoLiquido: number;
+};
