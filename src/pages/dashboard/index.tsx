@@ -28,10 +28,12 @@ export default function DashboardPage() {
     }
 
     async function onAddComponent(data: ComponentData) {
+        showLoading(true);
         await addComponent(data);
         const components = await loadComponentList();
         componentsRef.current = components;
         showComponentPopup(false);
+        showLoading(false);
     }
 
     async function onUpdateComponent(data: ComponentData) {
