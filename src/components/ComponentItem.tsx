@@ -75,6 +75,12 @@ const ComponentItemStyled = styled.div`
     color: white;
     border-radius: 5px;
     position: relative;
+    cursor: pointer;
+    transition: ease transform 500ms;
+
+    &:hover {
+        transform: scale(1.03);
+    }
 
     div.buttons {
         position: absolute;
@@ -85,6 +91,14 @@ const ComponentItemStyled = styled.div`
         border-radius: 5px;
         background-color: #4CA473;
         z-index: 10;
+    }
+
+    div.buttons > p {
+        cursor: pointer;
+
+        &:hover {
+            text-decoration: underline;
+        }
     }
 
     div.component-categories {
