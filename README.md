@@ -4,6 +4,54 @@ Photovoltaic components are part of the resources present in Intelbras' arsenal,
 
 ![Project Diagram](https://firebasestorage.googleapis.com/v0/b/myself-dg.appspot.com/o/interview%2Fintelbras%2Fintelbras-project-diagram.png?alt=media&token=8e7c7dcf-66f3-49cd-9c37-f701701b93a1)
 
+# How to install locally
+
+## Requirements for installation:
+
+- `Node.js` (version used: 14.18.1)
+- `npm` or `yarn` (version used of yarn: 1.22.10)
+- Access to a valid PostgreSQL database (Ex: [docker container](https://hub.docker.com/_/postgres))
+
+## Instructions
+
+1. Download to code repository
+    ```bash
+    git clone https://github.com/davidgaspardev/intelbras-photovoltaic-components
+    ```
+    or with ssh address
+    ```bash
+    git clone git@github.com:davidgaspardev/intelbras-photovoltaic-components
+    ```
+2. Access the code root directory
+    ```bash
+    cd intelbras-photovoltaic-components
+    ```
+3. Install code dependencies
+    ```bash
+    yarn
+    ```
+    or with node package manager (npm)
+    ```bash
+    npm install
+    ```
+4. Create environment file (`.env`) with PostgreSQL database url.
+    ```bash
+    echo "DATABASE_URL=\"postgresql://__USER__:__PASSWORD__@__HOST__/__DATABASE__\"" > .env
+    ```
+    Obs: Change the values (`__USER__`, `__PASSWORD__`, `__HOST__` and `__DATABASE__`) to the corresponding credentials of your PostgreSQL.
+5. Run code
+    ```bash
+    yarn dev
+    ```
+    or with node package manager (npm)
+    ```
+    npm run dev
+    ```
+
+Obs: Você pode ver os dados no banco de dados com o seguinte comando: `yarn db` or with npm `npm run db`
+
+___
+
 ## Objetivo
 
 Implementar uma aplicação com controle de autenticação de usuários no qual permita a listagem, criação, alteração e exclusão de componentes fotovoltaicos (CRUD). A listagem deverá permitir filtros através de nome e grupos de componentes. Criar também uma funcionalidade no qual poderá marcar diversos componentes e calcular a cubagem para transporte.
